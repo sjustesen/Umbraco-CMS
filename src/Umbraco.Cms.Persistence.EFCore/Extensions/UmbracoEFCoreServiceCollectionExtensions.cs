@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MySql.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Umbraco.Cms.Core;
