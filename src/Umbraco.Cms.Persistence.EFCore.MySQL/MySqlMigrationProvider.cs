@@ -1,8 +1,8 @@
-using Microsoft.EntityFrameworkCore;
+using MySql.EntityFrameworkCore;
 using Umbraco.Cms.Persistence.EFCore.Migrations;
 using Umbraco.Extensions;
 
-namespace Umbraco.Cms.Persistence.EFCore.SqlServer;
+namespace Umbraco.Cms.Persistence.EFCore.MySql;
 
 public class MySqlMigrationProvider : IMigrationProvider
 {
@@ -10,7 +10,7 @@ public class MySqlMigrationProvider : IMigrationProvider
 
     public SqlServerMigrationProvider(IDbContextFactory<UmbracoDbContext> dbContextFactory) => _dbContextFactory = dbContextFactory;
 
-    public string ProviderName => "Microsoft.Data.SqlClient";
+    public string ProviderName => "MySql";
 
     public async Task MigrateAsync(EFCoreMigration migration)
     {

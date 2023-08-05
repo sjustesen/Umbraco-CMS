@@ -8,6 +8,7 @@ using Umbraco.Cms.Persistence.EFCore.Locking;
 using Umbraco.Cms.Persistence.EFCore.Migrations;
 using Umbraco.Cms.Persistence.EFCore.Scoping;
 
+
 namespace Umbraco.Extensions;
 
 public static class UmbracoEFCoreServiceCollectionExtensions
@@ -110,6 +111,9 @@ public static class UmbracoEFCoreServiceCollectionExtensions
                 break;
             case "Microsoft.Data.SqlClient":
                 options.UseSqlServer(connectionString);
+                break;
+            case "MySql":
+                options.UseMySQL(connectionString);
                 break;
         }
     }
