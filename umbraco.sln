@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B5BD12C1
 		tests\Directory.Build.props = tests\Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Umbraco.Web.UI.Client", "http://localhost:3961", "{3819A550-DCEC-4153-91B4-8BA9F7F0B9B4}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Umbraco.Web.UI.Client", "http:\localhost:3961", "{3819A550-DCEC-4153-91B4-8BA9F7F0B9B4}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
@@ -34,7 +34,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Umbraco.Web.UI.Client", "ht
 		StartServerOnDebug = "false"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Umbraco.Tests.AcceptanceTest", "http://localhost:58896", "{9E4C8A12-FBE0-4673-8CE2-DF99D5D57817}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Umbraco.Tests.AcceptanceTest", "http:\localhost:58896", "{9E4C8A12-FBE0-4673-8CE2-DF99D5D57817}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
@@ -156,6 +156,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbraco.Cms.Persistence.EFCore.Sqlite", "src\Umbraco.Cms.Persistence.EFCore.Sqlite\Umbraco.Cms.Persistence.EFCore.Sqlite.csproj", "{8B4771F0-8EC2-4761-BBCE-DDE073DB3B7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbraco.Cms.Persistence.EFCore.SqlServer", "src\Umbraco.Cms.Persistence.EFCore.SqlServer\Umbraco.Cms.Persistence.EFCore.SqlServer.csproj", "{9276C3F0-0DC9-46C9-BF32-9EE79D92AE02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EADB80B1-98B4-4262-80E3-97C41FE728D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbraco.Cms.Persistence.EFCore.MySql", "src\Umbraco.Cms.Persistence.EFCore.MySql\Umbraco.Cms.Persistence.EFCore.MySql.csproj", "{4914C19E-1C95-4F7E-89F1-BCE0FF02A577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbraco.Cms.Persistence.MySql", "src\Umbraco.Cms.Persistence.MySql\Umbraco.Cms.Persistence.MySql.csproj", "{F239A221-BD3B-4010-A45B-C6287C0C77DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -327,6 +333,18 @@ Global
 		{9276C3F0-0DC9-46C9-BF32-9EE79D92AE02}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9276C3F0-0DC9-46C9-BF32-9EE79D92AE02}.SkipTests|Any CPU.ActiveCfg = Debug|Any CPU
 		{9276C3F0-0DC9-46C9-BF32-9EE79D92AE02}.SkipTests|Any CPU.Build.0 = Debug|Any CPU
+		{4914C19E-1C95-4F7E-89F1-BCE0FF02A577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4914C19E-1C95-4F7E-89F1-BCE0FF02A577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4914C19E-1C95-4F7E-89F1-BCE0FF02A577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4914C19E-1C95-4F7E-89F1-BCE0FF02A577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4914C19E-1C95-4F7E-89F1-BCE0FF02A577}.SkipTests|Any CPU.ActiveCfg = Debug|Any CPU
+		{4914C19E-1C95-4F7E-89F1-BCE0FF02A577}.SkipTests|Any CPU.Build.0 = Debug|Any CPU
+		{F239A221-BD3B-4010-A45B-C6287C0C77DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F239A221-BD3B-4010-A45B-C6287C0C77DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F239A221-BD3B-4010-A45B-C6287C0C77DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F239A221-BD3B-4010-A45B-C6287C0C77DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F239A221-BD3B-4010-A45B-C6287C0C77DA}.SkipTests|Any CPU.ActiveCfg = Debug|Any CPU
+		{F239A221-BD3B-4010-A45B-C6287C0C77DA}.SkipTests|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -345,6 +363,8 @@ Global
 		{2B47AD9F-FFF1-448A-88F1-D4F568811738} = {F2BF84D9-0A14-40AF-A0F3-B9BBBBC16A44}
 		{25AECCB5-B187-4406-844B-91B8FF0FCB37} = {2B47AD9F-FFF1-448A-88F1-D4F568811738}
 		{EA628ABD-624E-4AF3-B548-6710D4D66531} = {2B47AD9F-FFF1-448A-88F1-D4F568811738}
+		{4914C19E-1C95-4F7E-89F1-BCE0FF02A577} = {EADB80B1-98B4-4262-80E3-97C41FE728D4}
+		{F239A221-BD3B-4010-A45B-C6287C0C77DA} = {EADB80B1-98B4-4262-80E3-97C41FE728D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A0F2E34-D2AF-4DAB-86A0-7D7764B3D0EC}

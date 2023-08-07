@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Title>Umbraco CMS - Persistence - SQL Server</Title>
-    <Description>Adds support for SQL Server to Umbraco CMS.</Description>
+    <Title>Umbraco CMS - Persistence - MySql</Title>
+    <Description>Adds support for MySql to Umbraco CMS.</Description>
   </PropertyGroup>
 
   <ItemGroup>
