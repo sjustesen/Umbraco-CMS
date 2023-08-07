@@ -64,7 +64,7 @@ public class MySqlSyntaxProvider : MicrosoftSqlSyntaxProviderBase<MySqlSyntaxPro
 
     public ServerVersionInfo? ServerVersion { get; private set; }
 
-    public override string DbProvider => ServerVersion?.IsAzure ?? false ? "SqlAzure" : "MySql";
+    public override string DbProvider => "MySql";
 
     public override IsolationLevel DefaultIsolationLevel => IsolationLevel.ReadCommitted;
 
