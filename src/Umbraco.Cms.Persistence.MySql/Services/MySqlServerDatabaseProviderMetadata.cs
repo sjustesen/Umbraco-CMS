@@ -17,10 +17,10 @@ public class MySqlDatabaseProviderMetadata : IDatabaseProviderMetadata
     public Guid Id => new("5e1ad149-1951-4b74-90bf-2ac2aada9e73");
 
     /// <inheritdoc />
-    public int SortOrder => 2;
+    public int SortOrder => 4;
 
     /// <inheritdoc />
-    public string DisplayName => "SQL Server";
+    public string DisplayName => "MySQL";
 
     /// <inheritdoc />
     public string DefaultDatabaseName => string.Empty;
@@ -38,7 +38,7 @@ public class MySqlDatabaseProviderMetadata : IDatabaseProviderMetadata
     public bool RequiresServer => true;
 
     /// <inheritdoc />
-    public string ServerPlaceholder => "(local)\\SQLEXPRESS";
+    public string ServerPlaceholder => "127.0.0.1";
 
     /// <inheritdoc />
     public bool RequiresCredentials => true;
