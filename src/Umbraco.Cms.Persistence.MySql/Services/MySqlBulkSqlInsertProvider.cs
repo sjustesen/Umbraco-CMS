@@ -1,6 +1,7 @@
 using System.Data;
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using MySqlConnector;
 using NPoco;
 using Umbraco.Cms.Infrastructure.Persistence;
 using Umbraco.Extensions;
@@ -49,8 +50,8 @@ public class MySqlBulkSqlInsertProvider : IBulkSqlInsertProvider
         using (DbCommand command = database.CreateCommand(database.Connection, CommandType.Text, string.Empty))
         {
             // use typed connection and transaction or SqlBulkCopy
-            SqlConnection tConnection = NPocoDatabaseExtensions.GetTypedConnection<SqlConnection>(database.Connection);
-            SqlTransaction tTransaction = NPocoDatabaseExtensions.GetTypedTransaction<SqlTransaction>(command.Transaction);
+            var tConnection = NPocoDatabaseExtensions.GetTypedConnection<MySql.Data.MySqlClient.MySqlConnection>(database.Connection);
+            var tTransaction = NPocoDatabaseExtensions.GetTypedTransaction<MySql.Data.MySqlClient.MySqlTransaction>(command.Transaction);
             var tableName = pocoData.TableInfo.TableName;
 
             if (database.SqlContext.SqlSyntax is not MySqlSyntaxProvider syntax)
@@ -58,20 +59,19 @@ public class MySqlBulkSqlInsertProvider : IBulkSqlInsertProvider
                 throw new NotSupportedException("SqlSyntax must be MySqlSyntaxProvider.");
             }
 
-            using (var copy = new SqlBulkCopy(tConnection, SqlBulkCopyOptions.Default, tTransaction)
+            var copy = new MySqlBulkCopy(tConnection, tTransaction)
             {
                 // 0 = no bulk copy timeout. If a timeout occurs it will be an connection/command timeout.
                 BulkCopyTimeout = 0,
                 DestinationTableName = tableName,
                 // be consistent with NPoco: https://github.com/schotime/NPoco/blob/5117a55fde57547e928246c044fd40bd00b2d7d1/src/NPoco.MySql/SqlBulkCopyHelper.cs#L50
-                BatchSize = 4096,
-            })
+            };
             using (var bulkReader = new PocoDataDataReader<T, MySqlSyntaxProvider>(records, pocoData, syntax))
             {
                 // we need to add column mappings here because otherwise columns will be matched by their order and if the order of them are different in the DB compared
                 // to the order in which they are declared in the model then this will not work, so instead we will add column mappings by name so that this explicitly uses
                 // the names instead of their ordering.
-                foreach (SqlBulkCopyColumnMapping col in bulkReader.ColumnMappings)
+                foreach (MySqlBulkCopyColumnMapping col in bulkReader.ColumnMappings)
                 {
                     copy.ColumnMappings.Add(col.DestinationColumn, col.DestinationColumn);
                 }

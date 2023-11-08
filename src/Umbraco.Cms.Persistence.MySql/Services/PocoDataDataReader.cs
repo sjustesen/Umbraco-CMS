@@ -3,6 +3,7 @@ using NPoco;
 using Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations;
 using Umbraco.Cms.Infrastructure.Persistence.DatabaseModelDefinitions;
 using Umbraco.Cms.Infrastructure.Persistence.SqlSyntax;
+using Umbraco.Cms.Persistence.MySql.Services;
 
 namespace Umbraco.Cms.Persistence.SqlServer.Services;
 
@@ -25,14 +26,14 @@ internal class PocoDataDataReader<T, TSyntax> : BulkDataReader
     private readonly ColumnDefinition[] _columnDefinitions;
     private readonly IEnumerator<T> _enumerator;
     private readonly PocoColumn[] _readerColumns;
-    private readonly MicrosoftSqlSyntaxProviderBase<TSyntax> _sqlSyntaxProvider;
+    private readonly MySqlSyntaxProviderBase<TSyntax> _sqlSyntaxProvider;
     private readonly TableDefinition _tableDefinition;
     private int _recordsAffected = -1;
 
     public PocoDataDataReader(
         IEnumerable<T> dataSource,
         PocoData pd,
-        MicrosoftSqlSyntaxProviderBase<TSyntax> sqlSyntaxProvider)
+        MySqlSyntaxProviderBase<TSyntax> sqlSyntaxProvider)
     {
         if (dataSource == null)
         {
@@ -83,7 +84,7 @@ internal class PocoDataDataReader<T, TSyntax> : BulkDataReader
                 //get the SqlDbType from the 'special type'
                 switch (col.CustomDbType)
                 {
-                    case var x when x == SpecialDbType.NTEXT:
+                    case var x when x == SpecialDbType.NVARCHARMAX:
                         sqlDbType = SqlDbType.NText;
                         break;
                     case var x when x == SpecialDbType.NCHAR:

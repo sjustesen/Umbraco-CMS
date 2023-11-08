@@ -4,7 +4,8 @@ using System.Data.Common;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
-using Microsoft.Data.SqlClient;
+using MySql.Data;
+using MySqlConnector;
 
 namespace Umbraco.Cms.Persistence.MySql.Services;
 
@@ -44,7 +45,7 @@ internal abstract class BulkDataReader : IDataReader
     /// <summary>
     ///     The mapping from the row set input to the target table's columns.
     /// </summary>
-    private List<SqlBulkCopyColumnMapping>? _columnMappings = new();
+    private List<MySqlBulkCopyColumnMapping>? _columnMappings = new();
 
     #endregion
 
@@ -56,7 +57,7 @@ internal abstract class BulkDataReader : IDataReader
     /// <remarks>
     ///     If necessary, <see cref="BulkDataReader.AddSchemaTableRows()" /> will be called to initialize the mapping.
     /// </remarks>
-    public ReadOnlyCollection<SqlBulkCopyColumnMapping> ColumnMappings
+    public ReadOnlyCollection<MySqlBulkCopyColumnMapping> ColumnMappings
     {
         get
         {
@@ -73,7 +74,7 @@ internal abstract class BulkDataReader : IDataReader
                 Debug.Assert(_schemaTable?.Rows.Count == FieldCount);
             }
 
-            return new ReadOnlyCollection<SqlBulkCopyColumnMapping>(_columnMappings!);
+            return new ReadOnlyCollection<MySqlBulkCopyColumnMapping>(_columnMappings!);
         }
     }
 
@@ -179,6 +180,9 @@ internal abstract class BulkDataReader : IDataReader
     /// <exception cref="ArgumentNullException">
     ///     A null value for the parameter is not supported.
     /// </exception>
+    /// <param name="sourceOrdinal">
+    ///     The source zero-based index of the column.
+    /// </param>
     /// <param name="columnName">
     ///     The name of the column.
     /// </param>
@@ -220,6 +224,7 @@ internal abstract class BulkDataReader : IDataReader
     /// </param>
     /// <seealso cref="AddSchemaTableRows" />
     protected void AddSchemaTableRow(
+        int sourceOrdinal,
         string columnName,
         int? columnSize,
         short? numericPrecision,
@@ -564,7 +569,7 @@ internal abstract class BulkDataReader : IDataReader
                 }
 
                 dataType = typeof(object);
-                using (var commandBuilder = new SqlCommandBuilder())
+                using (var commandBuilder = new MySqlCommandBuilder())
                 {
                     dataTypeName = commandBuilder.QuoteIdentifier(udtSchema) + "." +
                                    commandBuilder.QuoteIdentifier(udtType);
@@ -714,7 +719,7 @@ internal abstract class BulkDataReader : IDataReader
             xmlSchemaCollectionOwningSchema,
             xmlSchemaCollectionName);
 
-        _columnMappings?.Add(new SqlBulkCopyColumnMapping(columnName, columnName));
+        _columnMappings?.Add(new MySqlBulkCopyColumnMapping(sourceOrdinal, columnName, columnName));
     }
 
     #endregion

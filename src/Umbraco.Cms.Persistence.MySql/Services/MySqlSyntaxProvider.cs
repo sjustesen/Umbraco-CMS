@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NPoco;
@@ -18,7 +18,7 @@ namespace Umbraco.Cms.Persistence.MySql.Services;
 /// <summary>
 ///     Represents an SqlSyntaxProvider for Sql Server.
 /// </summary>
-public class MySqlSyntaxProvider : MicrosoftSqlSyntaxProviderBase<MySqlSyntaxProvider>
+public class MySqlSyntaxProvider : MySqlSyntaxProviderBase<MySqlSyntaxProvider>
 {
     public enum EngineEdition
     {
@@ -91,7 +91,7 @@ public class MySqlSyntaxProvider : MicrosoftSqlSyntaxProviderBase<MySqlSyntaxPro
             _logger.LogDebug("MySql {MySqlVersion}, DatabaseType is {DatabaseType} ({Source}).", versionName, DatabaseType.MySql2012, fromSettings ? "settings" : "detected");
         }
 
-        return DatabaseType.MySql2012;
+        return DatabaseType.MySQL;
     }
 
     private static VersionName MapProductVersion(string productVersion)
@@ -129,7 +129,7 @@ public class MySqlSyntaxProvider : MicrosoftSqlSyntaxProviderBase<MySqlSyntaxPro
     internal ServerVersionInfo GetSetVersion(string? connectionString, string? providerName, ILogger logger)
     {
         // var factory = DbProviderFactories.GetFactory(providerName);
-        SqlClientFactory? factory = SqlClientFactory.Instance;
+        MySqlClientFactory? factory = MySqlClientFactory.Instance;
         DbConnection? connection = factory.CreateConnection();
 
         if (connection == null)
