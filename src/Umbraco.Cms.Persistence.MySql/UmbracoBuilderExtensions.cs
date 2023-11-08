@@ -1,7 +1,7 @@
 using System.Data.Common;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using MySql.Data.MySqlClient;
 using Umbraco.Cms.Core.Configuration.Models;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.DistributedLocking;
@@ -30,11 +30,7 @@ public static class UmbracoBuilderExtensions
         builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IDatabaseCreator, MySqlDatabaseCreator>());
 
         builder.Services.TryAddEnumerable(ServiceDescriptor
-            .Singleton<IDatabaseProviderMetadata, SqlLocalDbDatabaseProviderMetadata>());
-        builder.Services.TryAddEnumerable(ServiceDescriptor
             .Singleton<IDatabaseProviderMetadata, MySqlDatabaseProviderMetadata>());
-        builder.Services.TryAddEnumerable(ServiceDescriptor
-            .Singleton<IDatabaseProviderMetadata, SqlAzureDatabaseProviderMetadata>());
 
         builder.Services.TryAddEnumerable(ServiceDescriptor
             .Singleton<IDistributedLockingMechanism, MySqlDistributedLockingMechanism>());
@@ -45,7 +41,7 @@ public static class UmbracoBuilderExtensions
             .Singleton<IProviderSpecificInterceptor, MySqlAddRetryPolicyInterceptor>());
 
         DbProviderFactories.UnregisterFactory(Constants.ProviderName);
-        DbProviderFactories.RegisterFactory(Constants.ProviderName, SqlClientFactory.Instance);
+        DbProviderFactories.RegisterFactory(Constants.ProviderName, MySqlClientFactory.Instance);
 
         NPocoMySqlDatabaseExtensions.ConfigureNPocoBulkExtensions();
 

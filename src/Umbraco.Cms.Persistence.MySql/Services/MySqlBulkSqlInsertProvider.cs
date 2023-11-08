@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.Common;
+using MySql.Data
 using MySql.Data.MySqlClient;
 using MySqlConnector;
 using NPoco;
@@ -66,14 +67,14 @@ public class MySqlBulkSqlInsertProvider : IBulkSqlInsertProvider
                 DestinationTableName = tableName,
                 // be consistent with NPoco: https://github.com/schotime/NPoco/blob/5117a55fde57547e928246c044fd40bd00b2d7d1/src/NPoco.MySql/SqlBulkCopyHelper.cs#L50
             };
-            using (var bulkReader = new PocoDataDataReader<T, MySqlSyntaxProvider>(records, pocoData, syntax))
+            using (var bulkReader = new MySql.Services.PocoDataDataReader<T, MySqlSyntaxProvider>(records, pocoData, syntax))
             {
                 // we need to add column mappings here because otherwise columns will be matched by their order and if the order of them are different in the DB compared
                 // to the order in which they are declared in the model then this will not work, so instead we will add column mappings by name so that this explicitly uses
                 // the names instead of their ordering.
                 foreach (MySqlBulkCopyColumnMapping col in bulkReader.ColumnMappings)
                 {
-                    copy.ColumnMappings.Add(col.DestinationColumn, col.DestinationColumn);
+                    copy.ColumnMappings.Add(col);
                 }
 
                 copy.WriteToServer(bulkReader);

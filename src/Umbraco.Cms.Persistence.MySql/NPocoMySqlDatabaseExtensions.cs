@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using MySqlConnector;
 using MySql.Data;
 using NPoco;
 using Umbraco.Extensions;
@@ -23,7 +24,7 @@ public static class NPocoMySqlDatabaseExtensions
     /// </remarks>
     public static void ConfigureNPocoBulkExtensions()
     {
-        SqlBulkCopyHelper.SqlConnectionResolver = NPocoDatabaseExtensions.GetTypedConnection<MySqlConnection>;
-        SqlBulkCopyHelper.SqlTransactionResolver = NPocoDatabaseExtensions.GetTypedTransaction<MySqlTransaction>;
+        /* SqlBulkCopyHelper.SqlConnectionResolver = NPocoDatabaseExtensions.GetTypedConnection<MySqlConnector.MySqlConnection>;
+        SqlBulkCopyHelper.SqlTransactionResolver = NPocoDatabaseExtensions.GetTypedTransaction<MySqlConnector.MySqlTransaction>; */
     }
 }

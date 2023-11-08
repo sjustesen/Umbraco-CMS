@@ -3,9 +3,8 @@ using NPoco;
 using Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations;
 using Umbraco.Cms.Infrastructure.Persistence.DatabaseModelDefinitions;
 using Umbraco.Cms.Infrastructure.Persistence.SqlSyntax;
-using Umbraco.Cms.Persistence.MySql.Services;
 
-namespace Umbraco.Cms.Persistence.SqlServer.Services;
+namespace Umbraco.Cms.Persistence.MySql.Services;
 
 /// <summary>
 ///     A data reader used for reading collections of PocoData entity types
@@ -76,6 +75,7 @@ internal class PocoDataDataReader<T, TSyntax> : BulkDataReader
     {
         //var colNames = _readerColumns.Select(x => x.ColumnName).ToArray();
         //foreach (var col in _columnDefinitions.Where(x => colNames.Contains(x.Name, StringComparer.OrdinalIgnoreCase)))
+        int columnIndex = 0;
         foreach (ColumnDefinition col in _columnDefinitions)
         {
             SqlDbType sqlDbType;
@@ -110,6 +110,7 @@ internal class PocoDataDataReader<T, TSyntax> : BulkDataReader
             }
 
             AddSchemaTableRow(
+                columnIndex,
                 col.Name,
                 col.Size > 0 ? col.Size : null,
                 col.Precision > 0 ? (short?)col.Precision : null,
@@ -123,6 +124,7 @@ internal class PocoDataDataReader<T, TSyntax> : BulkDataReader
                 null,
                 null,
                 null);
+                columnIndex++;
         }
     }
 

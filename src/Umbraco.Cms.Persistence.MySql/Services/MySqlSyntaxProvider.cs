@@ -88,7 +88,7 @@ public class MySqlSyntaxProvider : MySqlSyntaxProviderBase<MySqlSyntaxProvider>
 
         if (_logger.IsEnabled(Microsoft.Extensions.Logging.LogLevel.Debug))
         {
-            _logger.LogDebug("MySql {MySqlVersion}, DatabaseType is {DatabaseType} ({Source}).", versionName, DatabaseType.MySql2012, fromSettings ? "settings" : "detected");
+            _logger.LogDebug("MySql {MySqlVersion}, DatabaseType is {DatabaseType} ({Source}).", versionName, DatabaseType.MySQL, fromSettings ? "settings" : "detected");
         }
 
         return DatabaseType.MySQL;

@@ -1,6 +1,6 @@
 using System.Data.Common;
 using System.Runtime.Serialization;
-using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using Umbraco.Cms.Core.Install.Models;
 using Umbraco.Cms.Infrastructure.Persistence;
 using Umbraco.Extensions;
@@ -60,16 +60,7 @@ public class MySqlDatabaseProviderMetadata : IDatabaseProviderMetadata
             return false;
         }
 
-        try
-        {
-            var builder = new SqlConnectionStringBuilder(connectionString);
-
-            return string.IsNullOrEmpty(builder.AttachDBFilename);
-        }
-        catch (ArgumentException)
-        {
-            return false;
-        }
+        return true;
     }
 
     /// <inheritdoc />

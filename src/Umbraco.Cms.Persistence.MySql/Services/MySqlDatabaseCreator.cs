@@ -1,4 +1,4 @@
-using MySql.Data;
+using MySql.Data.MySqlClient;
 using Umbraco.Cms.Infrastructure.Persistence;
 
 namespace Umbraco.Cms.Persistence.MySql.Services;
@@ -31,10 +31,10 @@ public class MySqlDatabaseCreator : IDatabaseCreator
                 database = "Umbraco-" + Guid.NewGuid();
             }
 
-            using var connection = new SqlConnection(masterConnectionString);
+            using var connection = new MySqlConnection(masterConnectionString);
             connection.Open();
 
-            using var command = new SqlCommand(
+            using var command = new MySqlCommand(
                 $"CREATE DATABASE [{database}] ON (NAME='{database}', FILENAME='{fileName}');" +
                 $"ALTER DATABASE [{database}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;" +
                 $"EXEC sp_detach_db @dbname='{database}';",
@@ -45,10 +45,10 @@ public class MySqlDatabaseCreator : IDatabaseCreator
         }
         else if (!string.IsNullOrEmpty(database))
         {
-            using var connection = new SqlConnection(masterConnectionString);
+            using var connection = new MySqlConnection(masterConnectionString);
             connection.Open();
 
-            using var command = new SqlCommand(
+            using var command = new MySqlCommand(
                 $"IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = '{database}') " +
                 $"CREATE DATABASE [{database}];",
                 connection);
