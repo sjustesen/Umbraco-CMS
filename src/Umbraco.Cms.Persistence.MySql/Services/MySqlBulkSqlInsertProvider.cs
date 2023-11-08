@@ -1,7 +1,5 @@
 using System.Data;
 using System.Data.Common;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using MySqlConnector;
 using NPoco;
 using Umbraco.Cms.Infrastructure.Persistence;
@@ -51,8 +49,8 @@ public class MySqlBulkSqlInsertProvider : IBulkSqlInsertProvider
         using (DbCommand command = database.CreateCommand(database.Connection, CommandType.Text, string.Empty))
         {
             // use typed connection and transaction or SqlBulkCopy
-            var tConnection = NPocoDatabaseExtensions.GetTypedConnection<MySql.Data.MySqlClient.MySqlConnection>(database.Connection);
-            var tTransaction = NPocoDatabaseExtensions.GetTypedTransaction<MySql.Data.MySqlClient.MySqlTransaction>(command.Transaction);
+            var tConnection = NPocoDatabaseExtensions.GetTypedConnection<MySqlConnector.MySqlConnection>(database.Connection);
+            var tTransaction = NPocoDatabaseExtensions.GetTypedTransaction<MySqlConnector.MySqlTransaction>(command.Transaction);
             var tableName = pocoData.TableInfo.TableName;
 
             if (database.SqlContext.SqlSyntax is not MySqlSyntaxProvider syntax)
