@@ -1,5 +1,5 @@
 using System.Data;
-using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Umbraco.Cms.Core.Configuration.Models;
@@ -89,7 +89,7 @@ public class MySqlDistributedLockingMechanism : IDistributedLockingMechanism
                         throw new ArgumentOutOfRangeException(nameof(lockType), lockType, @"Unsupported lockType");
                 }
             }
-            catch (SqlException ex) when (ex.Number == 1222)
+            catch (MySqlException ex) when (ex.Number == 1222)
             {
                 if (LockType == DistributedLockType.ReadLock)
                 {
