@@ -1,6 +1,6 @@
 using System.Data;
 using System.Data.Common;
-using MySql.Data
+using MySql.Data;
 using MySql.Data.MySqlClient;
 using MySqlConnector;
 using NPoco;
