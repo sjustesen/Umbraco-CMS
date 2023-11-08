@@ -2,6 +2,8 @@
   <PropertyGroup>
     <Title>Umbraco CMS - Persistence - MySql</Title>
     <Description>Adds support for MySql to Umbraco CMS.</Description>
+        <IsPackable>false</IsPackable>
+    <EnablePackageValidation>false</EnablePackageValidation>
   </PropertyGroup>
 
   <ItemGroup>

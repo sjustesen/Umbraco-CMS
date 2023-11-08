@@ -87,6 +87,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Umbraco.Cms.Persistence.Sql
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Umbraco.Cms.Persistence.SqlServer", "src\Umbraco.Cms.Persistence.SqlServer\Umbraco.Cms.Persistence.SqlServer.csproj", "{93C5910D-2E36-475D-88EB-A11BA5B50F65}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Umbraco.Cms.Persistence.MySql", "src\Umbraco.Cms.Persistence.MySql\Umbraco.Cms.Persistence.MySql.csproj", "{F239A221-BD3B-4010-A45B-C6287C0C77DA}"
+EndProject
+
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Umbraco.Cms.StaticAssets", "src\Umbraco.Cms.StaticAssets\Umbraco.Cms.StaticAssets.csproj", "{D2FD54E8-3470-4A98-8B0C-A9ACB59BED48}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{6D72A60B-0542-4AA9-A493-DD4179E838A1}"
@@ -160,8 +163,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EADB80B1-98B4-4262-80E3-97C41FE728D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbraco.Cms.Persistence.EFCore.MySql", "src\Umbraco.Cms.Persistence.EFCore.MySql\Umbraco.Cms.Persistence.EFCore.MySql.csproj", "{4914C19E-1C95-4F7E-89F1-BCE0FF02A577}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbraco.Cms.Persistence.MySql", "src\Umbraco.Cms.Persistence.MySql\Umbraco.Cms.Persistence.MySql.csproj", "{F239A221-BD3B-4010-A45B-C6287C0C77DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
