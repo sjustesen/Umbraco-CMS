@@ -12,15 +12,11 @@ public class MySqlDatabaseCreator : IDatabaseCreator
         var builder = new MySqlConnectionStringBuilder(connectionString);
 
         // Get connection string without database specific information
-        var masterBuilder = new MySqlConnectionStringBuilder(builder.ConnectionString)
-        {
-            AttachDBFilename = string.Empty,
-            InitialCatalog = string.Empty
-        };
+        var masterBuilder = new MySqlConnectionStringBuilder(builder.ConnectionString);
         var masterConnectionString = masterBuilder.ConnectionString;
 
-        string fileName = builder.AttachDBFilename,
-            database = builder.InitialCatalog;
+        string fileName = string.Empty,
+            database = builder.Database;
 
         // Create database
         if (!string.IsNullOrEmpty(fileName) && !File.Exists(fileName))
