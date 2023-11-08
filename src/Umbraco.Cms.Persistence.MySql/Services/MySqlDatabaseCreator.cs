@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+using MySql.Data;
 using Umbraco.Cms.Infrastructure.Persistence;
 
 namespace Umbraco.Cms.Persistence.MySql.Services;
@@ -9,10 +9,10 @@ public class MySqlDatabaseCreator : IDatabaseCreator
 
     public void Create(string connectionString)
     {
-        var builder = new SqlConnectionStringBuilder(connectionString);
+        var builder = new MySqlConnectionStringBuilder(connectionString);
 
         // Get connection string without database specific information
-        var masterBuilder = new SqlConnectionStringBuilder(builder.ConnectionString)
+        var masterBuilder = new MySqlConnectionStringBuilder(builder.ConnectionString)
         {
             AttachDBFilename = string.Empty,
             InitialCatalog = string.Empty

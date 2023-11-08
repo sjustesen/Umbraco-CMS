@@ -17,7 +17,7 @@ public abstract class MySqlSyntaxProviderBase<TSyntax> : SqlSyntaxProviderBase<T
 {
     private readonly ILogger _logger;
 
-    protected MicrosoftSqlSyntaxProviderBase()
+    protected MySqlSyntaxProviderBase()
     {
         _logger = StaticApplicationLogging.CreateLogger<TSyntax>();
 

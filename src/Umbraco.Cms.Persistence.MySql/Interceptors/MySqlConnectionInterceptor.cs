@@ -4,7 +4,7 @@ using Umbraco.Cms.Infrastructure.Persistence;
 
 namespace Umbraco.Cms.Persistence.MySql.Interceptors;
 
-public abstract class SqlServerConnectionInterceptor : IProviderSpecificConnectionInterceptor
+public abstract class MySqlConnectionInterceptor : IProviderSpecificConnectionInterceptor
 {
     public string ProviderName => Constants.ProviderName;
 

@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.2.0" />
     <PackageReference Include="NPoco" Version="5.7.1" />
+    <PackageReference Include="MySqlBulkLoader" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
