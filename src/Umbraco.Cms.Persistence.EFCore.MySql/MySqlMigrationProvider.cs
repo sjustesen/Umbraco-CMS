@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using MySql.EntityFrameworkCore;
 using Umbraco.Cms.Persistence.EFCore.Migrations;
 using Umbraco.Extensions;
@@ -8,7 +9,7 @@ public class MySqlMigrationProvider : IMigrationProvider
 {
     private readonly IDbContextFactory<UmbracoDbContext> _dbContextFactory;
 
-    public SqlServerMigrationProvider(IDbContextFactory<UmbracoDbContext> dbContextFactory) => _dbContextFactory = dbContextFactory;
+    public MySqlMigrationProvider(IDbContextFactory<UmbracoDbContext> dbContextFactory) => _dbContextFactory = dbContextFactory;
 
     public string ProviderName => "MySql";
 

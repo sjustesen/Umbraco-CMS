@@ -130,12 +130,7 @@ public class MySqlSyntaxProvider : MySqlSyntaxProviderBase<MySqlSyntaxProvider>
     {
         // var factory = DbProviderFactories.GetFactory(providerName);
         MySqlClientFactory? factory = MySqlClientFactory.Instance;
-        DbConnection? connection = factory.CreateConnection();
-
-        if (connection == null)
-        {
-            throw new InvalidOperationException($"Could not create a connection for provider \"{providerName}\".");
-        }
+        DbConnection? connection = factory.CreateConnection() ?? throw new InvalidOperationException($"Could not create a connection for provider \"{providerName}\".");
 
         // Edition: "Express Edition", "Windows Azure SQL Database..."
         // EngineEdition: 1/Desktop 2/Standard 3/Enterprise 4/Express 5/Azure
