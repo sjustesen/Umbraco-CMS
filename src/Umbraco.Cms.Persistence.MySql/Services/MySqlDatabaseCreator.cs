@@ -46,7 +46,7 @@ public class MySqlDatabaseCreator : IDatabaseCreator
 
             using var command = new MySqlCommand(
                 $"IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = '{database}') " +
-                $"CREATE DATABASE [{database}];",
+                $"CREATE DATABASE {database};",
                 connection);
             command.ExecuteNonQuery();
 
